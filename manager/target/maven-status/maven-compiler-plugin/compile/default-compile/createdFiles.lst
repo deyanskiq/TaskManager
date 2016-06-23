@@ -1,0 +1,6 @@
+manager\model\Specialty.class
+manager\model\Student.class
+manager\model\Teacher.class
+manager\rest\RestApp.class
+manager\dao\StudentDAO.class
+manager\dao\SpecialityDAO.class

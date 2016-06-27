@@ -26,14 +26,11 @@ public class Specialty implements Serializable {
 
 	private String name;
 
-	private Integer credits;
-
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "speciality")
 	private List<Student> students = new ArrayList<>();
 
-	public Specialty(String name, Integer credits, List<Student> students) {
+	public Specialty(String name, Integer credits) {
 		this.name = name;
-		this.credits = credits;
 	}
 
 	public Specialty() {
@@ -56,14 +53,6 @@ public class Specialty implements Serializable {
 		this.name = name;
 	}
 
-	public Integer getCredits() {
-		return credits;
-	}
-
-	public void setCredits(Integer credits) {
-		this.credits = credits;
-	}
-
 	public List<Student> getStudents() {
 		return students;
 	}
@@ -76,7 +65,6 @@ public class Specialty implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((credits == null) ? 0 : credits.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -91,11 +79,6 @@ public class Specialty implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Specialty other = (Specialty) obj;
-		if (credits == null) {
-			if (other.credits != null)
-				return false;
-		} else if (!credits.equals(other.credits))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -111,7 +94,7 @@ public class Specialty implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Specialty [name=" + name + ", credits=" + credits + ", students=" + students + "]";
+		return "Specialty [name=" + name + ", students=" + students + "]";
 	}
 
 }

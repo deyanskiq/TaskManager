@@ -1,12 +1,12 @@
 package manager.dao;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import manager.model.Specialty;
 
-@Stateless
+@RequestScoped
 public class SpecialityDAO {
 
 	@PersistenceContext

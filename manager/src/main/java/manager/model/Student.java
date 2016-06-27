@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,10 +17,7 @@ public class Student implements Serializable {
 	private static final long serialVersionUID = 424427115758866372L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	private String facultyNumber;
+	private Long facultyNumber;
 
 	private String password;
 
@@ -33,7 +28,7 @@ public class Student implements Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Specialty speciality;
 
-	public Student(String facultyNumber, String password, String email, String name, Specialty speciality) {
+	public Student(Long facultyNumber, String password, String email, String name, Specialty speciality) {
 		this.facultyNumber = facultyNumber;
 		this.password = password;
 		this.email = email;
@@ -45,19 +40,11 @@ public class Student implements Serializable {
 
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getFacultyNumber() {
+	public Long getFacultyNumber() {
 		return facultyNumber;
 	}
 
-	public void setFacultyNumber(String facultyNumber) {
+	public void setFacultyNumber(Long facultyNumber) {
 		this.facultyNumber = facultyNumber;
 	}
 
@@ -99,7 +86,6 @@ public class Student implements Serializable {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((facultyNumber == null) ? 0 : facultyNumber.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
@@ -124,11 +110,6 @@ public class Student implements Serializable {
 				return false;
 		} else if (!facultyNumber.equals(other.facultyNumber))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -147,5 +128,4 @@ public class Student implements Serializable {
 		return "Student [facultyNumber=" + facultyNumber + ", password=" + password + ", email=" + email + ", name="
 				+ name + ", speciality=" + speciality + "]";
 	}
-
 }

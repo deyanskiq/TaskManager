@@ -18,8 +18,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @NamedQueries({
-		@NamedQuery(name = "findStudentByFN", query = "SELECT s FROM Student s WHERE s.facultyNumber= :facultyNumber"),
-		@NamedQuery(name = "getAllCourses", query = "SELECT s.courses FROM Student s WHERE s.facultyNumber=:facultyNumber") })
+		@NamedQuery(name = "findStudentByFN", query = "SELECT s FROM Student s WHERE s.facultyNumber= :facultyNumber")
+})
 @Table(name = "STUDENTS")
 public class Student implements Serializable {
 
@@ -40,10 +40,19 @@ public class Student implements Serializable {
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "student")
 	private List<Homework> homeworks = new ArrayList<>();
 
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
 	@ManyToMany
 	private List<Course> courses = new ArrayList<>();
 
-	public Student(Long facultyNumber, String password, String email, String name, Specialty speciality) {
+	public Student(Long facultyNumber, String password, String email,
+			String name, Specialty speciality) {
 		this.facultyNumber = facultyNumber;
 		this.password = password;
 		this.email = email;
@@ -108,9 +117,11 @@ public class Student implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((facultyNumber == null) ? 0 : facultyNumber.hashCode());
+		result = prime * result
+				+ ((facultyNumber == null) ? 0 : facultyNumber.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result
+				+ ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
 
@@ -148,7 +159,8 @@ public class Student implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Student [facultyNumber=" + facultyNumber + ", password=" + password + ", email=" + email + ", name="
-				+ name + ", speciality=" + speciality + "]";
+		return "Student [facultyNumber=" + facultyNumber + ", password="
+				+ password + ", email=" + email + ", name=" + name
+				+ ", speciality=" + speciality + "]";
 	}
 }

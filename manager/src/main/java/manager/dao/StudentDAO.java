@@ -9,6 +9,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import manager.model.Course;
+import manager.model.Homework;
 import manager.model.Student;
 
 @RequestScoped
@@ -37,8 +39,19 @@ public class StudentDAO {
 		}
 	}
 	
-	public List<Student> getAllCourses(Long facultyNumber) {
-		return em.createNamedQuery("getAllCourses",Student.class).getResultList();
+	public List<Course> getAllCourses(Long facultyNumber) {
+		Student s = findStudentByFN(facultyNumber);
+		if(s!=null){
+			return s.getCourses();
+		} 
+		return null;
+	}
+	public List<Homework> getAllHomeworks(Long facultyNumber){
+		Student s = findStudentByFN(facultyNumber);
+		if(s!=null){
+			return s.getHomeworks();
+		} 
+		return null;
 	}
 
 }

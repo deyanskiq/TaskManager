@@ -9,12 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
+@NamedQueries({@NamedQuery(name="findSpecialtyByName",query= "SELECT s FROM Specialty s WHERE s.name=:name")})
 @Table(name = "SPECIALTIES")
 public class Specialty implements Serializable {
 
@@ -29,7 +32,7 @@ public class Specialty implements Serializable {
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "speciality")
 	private List<Student> students = new ArrayList<>();
 
-	public Specialty(String name, Integer credits) {
+	public Specialty(String name) {
 		this.name = name;
 	}
 

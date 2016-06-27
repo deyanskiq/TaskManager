@@ -29,7 +29,7 @@ public class StudentDAO {
 		}
 	}
 
-	private Student findStudentByFN(Long facultyNumber) {
+	public Student findStudentByFN(Long facultyNumber) {
 		TypedQuery<Student> query = em.createNamedQuery("findStudentByFN",
 				Student.class).setParameter("facultyNumber", facultyNumber);
 		try {
@@ -46,6 +46,7 @@ public class StudentDAO {
 		} 
 		return null;
 	}
+	
 	public List<Homework> getAllHomeworks(Long facultyNumber){
 		Student s = findStudentByFN(facultyNumber);
 		if(s!=null){

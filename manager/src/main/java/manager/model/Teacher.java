@@ -9,12 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
+@NamedQueries({ @NamedQuery(name = "findTeacherByName", query = "SELECT t FROM Teacher t WHERE t.name=:name") })
 @Table(name = "TEACHERS")
 public class Teacher implements Serializable {
 
@@ -91,9 +94,11 @@ public class Teacher implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result
+				+ ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result
+				+ ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -131,7 +136,8 @@ public class Teacher implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Teacher [username=" + username + ", password=" + password + ", name=" + name + ", title=" + title + "]";
+		return "Teacher [username=" + username + ", password=" + password
+				+ ", name=" + name + ", title=" + title + "]";
 	}
 
 }

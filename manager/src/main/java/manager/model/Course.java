@@ -11,12 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
+@NamedQueries({ @NamedQuery(name = "findCourseByName", query = "SELECT c FROM Course c WHERE c.name=:name") })
 @Table(name = "COURSES")
 public class Course {
 
@@ -103,7 +106,8 @@ public class Course {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((credits == null) ? 0 : credits.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result
+				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -137,7 +141,8 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return "Course [name=" + name + ", credits=" + credits + ", description=" + description + "]";
+		return "Course [name=" + name + ", credits=" + credits
+				+ ", description=" + description + "]";
 	}
 
 }

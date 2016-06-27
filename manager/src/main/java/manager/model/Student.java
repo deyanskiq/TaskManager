@@ -9,12 +9,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
+@NamedQueries({
+		@NamedQuery(name = "findStudentByFN", query = "SELECT s FROM Student s WHERE s.facultyNumber= :facultyNumber"),
+		@NamedQuery(name = "getAllCourses", query = "SELECT s.courses FROM Student s WHERE s.facultyNumber=:facultyNumber") })
 @Table(name = "STUDENTS")
 public class Student implements Serializable {
 

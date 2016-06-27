@@ -1,7 +1,5 @@
 package manager.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -48,10 +46,6 @@ public class Course {
 		return description;
 	}
 
-	public List<Course> getCourses() {
-		return courses;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -64,17 +58,13 @@ public class Course {
 		this.description = description;
 	}
 
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((courses == null) ? 0 : courses.hashCode());
 		result = prime * result + ((credits == null) ? 0 : credits.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result
+				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -88,11 +78,6 @@ public class Course {
 		if (getClass() != obj.getClass())
 			return false;
 		Course other = (Course) obj;
-		if (courses == null) {
-			if (other.courses != null)
-				return false;
-		} else if (!courses.equals(other.courses))
-			return false;
 		if (credits == null) {
 			if (other.credits != null)
 				return false;
@@ -113,8 +98,8 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return "Course [name=" + name + ", credits=" + credits + ", description=" + description + ", courses=" + courses
-				+ "]";
+		return "Course [name=" + name + ", credits=" + credits
+				+ ", description=" + description + "]";
 	}
 
 }

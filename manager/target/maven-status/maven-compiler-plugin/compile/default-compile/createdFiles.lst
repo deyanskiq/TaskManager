@@ -1,3 +1,4 @@
+manager\model\Homework.class
 manager\model\Specialty.class
 manager\model\Student.class
 manager\model\Teacher.class

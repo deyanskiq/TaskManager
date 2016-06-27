@@ -1,12 +1,17 @@
 package manager.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,6 +31,15 @@ public class Course {
 	@Lob
 	private String description;
 
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Teacher teacher;
+
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "course")
+	private List<Homework> homeworks = new ArrayList<>();
+
+	@ManyToMany(mappedBy = "courses")
+	private List<Student> students = new ArrayList<>();
+
 	public Course(String name, Integer credits, String description) {
 		this.name = name;
 		this.credits = credits;
@@ -34,6 +48,22 @@ public class Course {
 
 	public Course() {
 
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 	public String getName() {
@@ -48,10 +78,6 @@ public class Course {
 		return description;
 	}
 
-	public List<Course> getCourses() {
-		return courses;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -64,15 +90,18 @@ public class Course {
 		this.description = description;
 	}
 
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
+	public List<Homework> getHomeworks() {
+		return homeworks;
+	}
+
+	public void setHomeworks(List<Homework> homeworks) {
+		this.homeworks = homeworks;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((courses == null) ? 0 : courses.hashCode());
 		result = prime * result + ((credits == null) ? 0 : credits.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -88,11 +117,6 @@ public class Course {
 		if (getClass() != obj.getClass())
 			return false;
 		Course other = (Course) obj;
-		if (courses == null) {
-			if (other.courses != null)
-				return false;
-		} else if (!courses.equals(other.courses))
-			return false;
 		if (credits == null) {
 			if (other.credits != null)
 				return false;
@@ -113,8 +137,7 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return "Course [name=" + name + ", credits=" + credits + ", description=" + description + ", courses=" + courses
-				+ "]";
+		return "Course [name=" + name + ", credits=" + credits + ", description=" + description + "]";
 	}
 
 }

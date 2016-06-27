@@ -1,11 +1,15 @@
 package manager.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,6 +31,12 @@ public class Student implements Serializable {
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Specialty speciality;
+
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "student")
+	private List<Homework> homeworks = new ArrayList<>();
+
+	@ManyToMany
+	private List<Course> courses = new ArrayList<>();
 
 	public Student(Long facultyNumber, String password, String email, String name, Specialty speciality) {
 		this.facultyNumber = facultyNumber;
@@ -78,6 +88,14 @@ public class Student implements Serializable {
 
 	public void setSpeciality(Specialty speciality) {
 		this.speciality = speciality;
+	}
+
+	public List<Homework> getHomeworks() {
+		return homeworks;
+	}
+
+	public void setHomeworks(List<Homework> homeworks) {
+		this.homeworks = homeworks;
 	}
 
 	@Override

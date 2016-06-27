@@ -3,5 +3,6 @@ D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\StudentDAO.j
 D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Specialty.java
 D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\SpecialityDAO.java
 D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Course.java
+D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Homework.java
 D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Teacher.java
 D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\rest\RestApp.java

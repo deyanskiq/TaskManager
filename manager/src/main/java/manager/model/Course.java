@@ -78,6 +78,14 @@ public class Course {
 		return description;
 	}
 
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}

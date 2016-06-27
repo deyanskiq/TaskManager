@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -17,15 +19,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-@NamedQueries({
-		@NamedQuery(name = "findStudentByFN", query = "SELECT s FROM Student s WHERE s.facultyNumber= :facultyNumber"),
-		@NamedQuery(name = "getAllCourses", query = "SELECT s.courses FROM Student s WHERE s.facultyNumber=:facultyNumber") })
 @Table(name = "STUDENTS")
+@NamedQueries({
+		@NamedQuery(name = "findStudentByFN", query = "SELECT s FROM Student s WHERE s.facultyNumber = :facultyNumber") })
 public class Student implements Serializable {
 
 	private static final long serialVersionUID = 424427115758866372L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	private Long facultyNumber;
 
 	private String password;
@@ -43,16 +47,23 @@ public class Student implements Serializable {
 	@ManyToMany
 	private List<Course> courses = new ArrayList<>();
 
-	public Student(Long facultyNumber, String password, String email, String name, Specialty speciality) {
+	public Student(Long facultyNumber, String password, String email, String name) {
 		this.facultyNumber = facultyNumber;
 		this.password = password;
 		this.email = email;
 		this.name = name;
-		this.speciality = speciality;
 	}
 
 	public Student() {
 
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Long getFacultyNumber() {
@@ -85,6 +96,14 @@ public class Student implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
 	}
 
 	public Specialty getSpeciality() {

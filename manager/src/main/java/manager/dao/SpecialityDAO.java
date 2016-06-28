@@ -1,15 +1,15 @@
 package manager.dao;
 
-import javax.ejb.Singleton;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import manager.model.Specialty;
 
-@Singleton
+@RequestScoped
 public class SpecialityDAO {
 
-	@PersistenceContext(unitName = "manager")
+	@PersistenceContext
 	private EntityManager em;
 
 	public void addSpeciality(Specialty speciality) {

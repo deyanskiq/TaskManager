@@ -4,15 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -26,6 +18,9 @@ public class Student implements Serializable {
 	private static final long serialVersionUID = 424427115758866372L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	private Long facultyNumber;
 
 	private String password;
@@ -52,12 +47,11 @@ public class Student implements Serializable {
 	private List<Course> courses = new ArrayList<>();
 
 	public Student(Long facultyNumber, String password, String email,
-			String name, Specialty speciality) {
+			String name) {
 		this.facultyNumber = facultyNumber;
 		this.password = password;
 		this.email = email;
 		this.name = name;
-		this.speciality = speciality;
 	}
 
 	public Student() {

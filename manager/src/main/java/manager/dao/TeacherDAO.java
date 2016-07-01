@@ -1,6 +1,6 @@
 package manager.dao;
 
-import java.sql.SQLException;
+import java.security.MessageDigest;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
@@ -15,24 +15,53 @@ public class TeacherDAO {
 
 	@PersistenceContext
 	EntityManager em;
-	
-	public void addTeacher(Teacher teacher) throws SQLException {
-		Teacher foundTeacher = findTeacherByName(teacher.getName());
-		if(foundTeacher==null){
+
+	public boolean addTeacher(Teacher teacher) {
+		teacher.setPassword(getHashedPassword(teacher.getPassword()));
+		Teacher foundTeacher = findTeacherByNameAndPass(teacher.getName(), teacher.getPassword());
+		if (foundTeacher == null) {
 			em.persist(teacher);
-		} else {
-			throw new SQLException("Teacher with name " + teacher.getName() + " already exists in DB!");
+			return true;
 		}
+		return false;
 	}
-	
-	public Teacher findTeacherByName(String name) {
-		TypedQuery<Teacher> query = em.createNamedQuery("findTeacherByName",
-				Teacher.class).setParameter("name", name);
+
+	public Teacher findTeacherByNameAndPass(String name, String password) {
+		TypedQuery<Teacher> query = em.createNamedQuery("findTeacherByNameAndPass", Teacher.class)
+				.setParameter("name", name).setParameter("password", password);
 		try {
 			return query.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
 	}
-	
+
+	public Teacher validateTeacherCredentials(String name, String password) {
+		String txtQuery = "SELECT t FROM Teacher t WHERE t.name=:name AND t.password=:password";
+		TypedQuery<Teacher> query = em.createQuery(txtQuery, Teacher.class);
+		query.setParameter("name", name);
+		query.setParameter("password", getHashedPassword(password));
+		Teacher teacher = queryUser(query);
+		return teacher != null ? teacher : null;
+
+	}
+
+	private Teacher queryUser(TypedQuery<Teacher> query) {
+		try {
+			return query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	private String getHashedPassword(String password) {
+		try {
+			MessageDigest mda = MessageDigest.getInstance("SHA-512");
+			password = new String(mda.digest(password.getBytes()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return password;
+	}
+
 }

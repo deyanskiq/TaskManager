@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @Table(name = "HOMEWORKS")
+@NamedQueries({ @NamedQuery(name = "findHomeworkById", query = "SELECT h FROM Homework h WHERE h.id=:id") })
 public class Homework implements Serializable {
 
 	private static final long serialVersionUID = 2630716586806811332L;
@@ -35,7 +38,7 @@ public class Homework implements Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Student student;
 
-	private Integer mark;
+	private Double mark;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date deadline;
@@ -65,7 +68,7 @@ public class Homework implements Serializable {
 		return student;
 	}
 
-	public Integer getMark() {
+	public Double getMark() {
 		return mark;
 	}
 
@@ -89,7 +92,7 @@ public class Homework implements Serializable {
 		this.student = student;
 	}
 
-	public void setMark(Integer mark) {
+	public void setMark(Double mark) {
 		this.mark = mark;
 	}
 

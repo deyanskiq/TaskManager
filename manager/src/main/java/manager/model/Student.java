@@ -6,22 +6,26 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import manager.enums.Speciality;
+
 @Entity
 @XmlRootElement
 @Table(name = "STUDENTS")
 @NamedQueries({
-		@NamedQuery(name = "findStudentByFN", query = "SELECT s FROM Student s WHERE s.facultyNumber = :facultyNumber") })
+		@NamedQuery(name = "findStudentByFN", query = "SELECT s FROM Student s WHERE s.facultyNumber = :facultyNumber"),
+		@NamedQuery(name = "getStudents", query = "SELECT s FROM Student s") })
 public class Student implements Serializable {
 
 	private static final long serialVersionUID = 424427115758866372L;
@@ -38,8 +42,8 @@ public class Student implements Serializable {
 
 	private String name;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	private Specialty speciality;
+	@Enumerated(EnumType.STRING)
+	private Speciality speciality;
 
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "student")
 	private List<Homework> homeworks = new ArrayList<>();
@@ -47,11 +51,12 @@ public class Student implements Serializable {
 	@ManyToMany
 	private List<Course> courses = new ArrayList<>();
 
-	public Student(Long facultyNumber, String password, String email, String name) {
+	public Student(Long facultyNumber, String password, String email, String name, Speciality speciality) {
 		this.facultyNumber = facultyNumber;
 		this.password = password;
 		this.email = email;
 		this.name = name;
+		this.speciality = speciality;
 	}
 
 	public Student() {
@@ -106,11 +111,11 @@ public class Student implements Serializable {
 		this.courses = courses;
 	}
 
-	public Specialty getSpeciality() {
+	public Speciality getSpeciality() {
 		return speciality;
 	}
 
-	public void setSpeciality(Specialty speciality) {
+	public void setSpeciality(Speciality speciality) {
 		this.speciality = speciality;
 	}
 

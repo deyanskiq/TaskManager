@@ -1,5 +1,6 @@
 package manager.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -18,7 +21,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @Table(name = "COURSES")
-public class Course {
+@NamedQueries({ @NamedQuery(name = "findCourseByName", query = "SELECT c FROM Course c WHERE c.name=:name"),
+		@NamedQuery(name = "getCourses", query = "SELECT c FROM Course c") })
+public class Course implements Serializable {
+
+	private static final long serialVersionUID = -2164104272804005052L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

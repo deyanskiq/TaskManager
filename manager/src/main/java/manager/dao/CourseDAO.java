@@ -1,6 +1,5 @@
 package manager.dao;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -18,14 +17,13 @@ public class CourseDAO {
 	@PersistenceContext
 	private EntityManager em;
 
-	public void addCourse(Course course) throws SQLException {
+	public boolean addCourse(Course course) {
 		Course foundCourse = findCourseByName(course.getName());
 		if (foundCourse == null) {
 			em.persist(course);
-
-		} else {
-			throw new SQLException("Course with name " + course.getName() + " already exists in DB!");
+			return true;
 		}
+		return false;
 	}
 
 	public Course findCourseByName(String name) {
@@ -43,5 +41,14 @@ public class CourseDAO {
 			return course.getHomeworks();
 		}
 		return null;
+	}
+
+	public List<Course> getCourses() {
+		TypedQuery<Course> query = em.createNamedQuery("getCourses", Course.class);
+		try {
+			return query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 }

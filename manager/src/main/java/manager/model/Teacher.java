@@ -15,10 +15,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "findTeacherByName", query = "SELECT t FROM Teacher t WHERE t.name=:name") })
 @Table(name = "TEACHERS")
+@NamedQueries({
+		@NamedQuery(name = "findTeacherByNameAndPass", query = "SELECT t FROM Teacher t WHERE t.name=:name AND t.password=:password"),
+		@NamedQuery(name = "findTeacherByUserName", query = "SELECT t FROM Teacher t WHERE t.username=:username") })
 public class Teacher implements Serializable {
 
 	private static final long serialVersionUID = -7050747523330801102L;
@@ -35,6 +39,7 @@ public class Teacher implements Serializable {
 
 	private String title;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "teacher")
 	private List<Course> courses = new ArrayList<>();
 
@@ -94,11 +99,9 @@ public class Teacher implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result
-				+ ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 
@@ -136,8 +139,7 @@ public class Teacher implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Teacher [username=" + username + ", password=" + password
-				+ ", name=" + name + ", title=" + title + "]";
+		return "Teacher [username=" + username + ", password=" + password + ", name=" + name + ", title=" + title + "]";
 	}
 
 }

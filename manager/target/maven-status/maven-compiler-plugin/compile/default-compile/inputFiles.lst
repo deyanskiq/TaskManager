@@ -1,8 +1,13 @@
 D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Student.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\StudentDAO.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Specialty.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\SpecialityDAO.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Course.java
+D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\services\StudentManager.java
 D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Homework.java
 D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Teacher.java
+D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\StudentDAO.java
+D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Specialty.java
+D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\SpecialtyDAO.java
+D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\SpecialityDAO.java
+D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\HomeworkDAO.java
+D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\TeacherDAO.java
+D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Course.java
+D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\CourseDAO.java
 D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\rest\RestApp.java

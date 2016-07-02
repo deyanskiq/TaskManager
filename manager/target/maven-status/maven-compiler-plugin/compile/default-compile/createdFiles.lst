@@ -1,8 +1,13 @@
-manager\model\Homework.class
 manager\model\Specialty.class
+manager\dao\CourseDAO.class
+manager\services\StudentManager.class
+manager\rest\RestApp.class
+manager\dao\TeacherDAO.class
+manager\model\Course.class
+manager\model\Homework.class
+manager\dao\SpecialtyDAO.class
 manager\model\Student.class
 manager\model\Teacher.class
-manager\rest\RestApp.class
 manager\dao\StudentDAO.class
 manager\dao\SpecialityDAO.class
-manager\model\Course.class
+manager\dao\HomeworkDAO.class

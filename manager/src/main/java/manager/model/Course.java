@@ -1,5 +1,6 @@
 package manager.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +20,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "findCourseByName", query = "SELECT c FROM Course c WHERE c.name=:name") })
 @Table(name = "COURSES")
-public class Course {
+@NamedQueries({ @NamedQuery(name = "findCourseByName", query = "SELECT c FROM Course c WHERE c.name=:name"),
+		@NamedQuery(name = "getCourses", query = "SELECT c FROM Course c") })
+public class Course implements Serializable {
+
+	private static final long serialVersionUID = -2164104272804005052L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,6 +85,14 @@ public class Course {
 		return description;
 	}
 
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -106,8 +118,7 @@ public class Course {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((credits == null) ? 0 : credits.hashCode());
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -141,8 +152,7 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return "Course [name=" + name + ", credits=" + credits
-				+ ", description=" + description + "]";
+		return "Course [name=" + name + ", credits=" + credits + ", description=" + description + "]";
 	}
 
 }

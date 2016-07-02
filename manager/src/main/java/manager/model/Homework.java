@@ -17,6 +17,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @XmlRootElement
 @Table(name = "HOMEWORKS")
@@ -33,9 +35,11 @@ public class Homework implements Serializable {
 	private String description;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JsonIgnore
 	private Course course;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JsonIgnore
 	private Student student;
 
 	private Double mark;

@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @XmlRootElement
 @Table(name = "TEACHERS")
@@ -37,6 +39,7 @@ public class Teacher implements Serializable {
 
 	private String title;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "teacher")
 	private List<Course> courses = new ArrayList<>();
 

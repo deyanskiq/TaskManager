@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @XmlRootElement
 @Table(name = "COURSES")
@@ -39,12 +41,15 @@ public class Course implements Serializable {
 	private String description;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JsonIgnore
 	private Teacher teacher;
 
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "course")
+	@JsonIgnore
 	private List<Homework> homeworks = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "courses")
+	@JsonIgnore
 	private List<Student> students = new ArrayList<>();
 
 	public Course(String name, Integer credits, String description) {

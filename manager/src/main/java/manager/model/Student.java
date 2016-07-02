@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import manager.enums.Speciality;
 
 @Entity
@@ -45,9 +47,11 @@ public class Student implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Speciality speciality;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "student")
 	private List<Homework> homeworks = new ArrayList<>();
 
+	@JsonIgnore
 	@ManyToMany
 	private List<Course> courses = new ArrayList<>();
 

@@ -22,6 +22,7 @@ function login() {
 			if (role == "Not Found") {
 				$("#reset_login").trigger("click");				
 			}
+			
 			else if(role == "Student"){
 				window.location.replace("studenthome.html");				
 			}

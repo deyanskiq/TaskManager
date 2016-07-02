@@ -84,12 +84,7 @@
                     <h2 class="section-heading">Add a new student</h2>
                     <hr class="light">
                     <form class="form-horizontal">
-                      <div class="form-group">
-                        <label for="student_username" class="col-sm-2 control-label">Username</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="student_username" placeholder="Username of the student">
-                        </div>
-                      </div>
+                   
                       <div class="form-group">
                         <label for="student_password" class="col-sm-2 control-label">Password</label>
                         <div class="col-sm-10">
@@ -122,7 +117,7 @@
                       </div>
 
                     <button type = "button" onclick="javascript:add_student()" class="btn btn-default btn-xl my-button">Add student</button>
-                    <button type="reset" class="btn btn-default btn-xl my-button">Reset information</button>
+                    <button type="reset" id="reset_add_student" class="btn btn-default btn-xl my-button">Reset information</button>
                     <br>
                     <br>
                     </form>
@@ -157,12 +152,6 @@
                         </div>
                       </div>
                     <div class="form-group">
-                        <label for="teacher_email" class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="teacher_email" placeholder="Email of the teacher">
-                        </div>
-                      </div>
-                    <div class="form-group">
                         <label for="teacher_title" class="col-sm-2 control-label">Title</label>
                         <div class="col-sm-10">
                           <input type="text" class="form-control" id="teacher_title" placeholder="Title of the teacher">
@@ -170,7 +159,7 @@
                       </div>
 
                     <button type="button" onclick="javascript:add_teacher()" class="btn btn-primary btn-xl my-button">Add teacher</button>
-                    <button type="reset" class="btn btn-primary btn-xl my-button">Reset information</button>
+                    <button type="reset" id="reset_add_teacher" class="btn btn-primary btn-xl my-button">Reset information</button>
                     </form>
                 </div>
             </div>
@@ -192,7 +181,7 @@
                       </div>
 
                     <button type="button" onclick="javascript:delete_student()" class="btn btn-default btn-xl my-button">Delete student</button>
-                    <button type="reset" class="btn btn-default btn-xl my-button">Reset information</button>
+                    <button type="reset" id="reset_delete_student" class="btn btn-default btn-xl my-button">Reset information</button>
                     </form>
                 </div>
             </div>
@@ -213,7 +202,7 @@
                         </div>
                       </div>
                     <button type="button" onclick="javascript:delete_teacher()" class="btn btn-primary btn-xl my-button">Delete teacher</button>
-                    <button type="reset" class="btn btn-primary btn-xl my-button">Reset information</button>
+                    <button type="reset" id="reset_delete_teacher" class="btn btn-primary btn-xl my-button">Reset information</button>
                     </form>
                 </div>
             </div>

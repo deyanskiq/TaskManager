@@ -1,6 +1,8 @@
+"use strict";
 function login() {
 	var username = $("#userName")[0].value;
 	var password = $("#pwd")[0].value;
+	$("#not_login").remove();
 
 	if (username == "" || password == "") {
 		alert("Username and password should not be empty.");
@@ -20,7 +22,8 @@ function login() {
 		dataType: "text",
 		success: function(role) {
 			if (role == "Not Found") {
-				$("#reset_login").trigger("click");				
+				$("#reset_login").trigger("click");	
+				$("#not_successfully_log_in").append("<p id=\"not_login\">Invalid username or password</p>");
 			}
 			
 			else if(role == "Student"){

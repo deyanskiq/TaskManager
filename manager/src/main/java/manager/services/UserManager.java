@@ -19,7 +19,6 @@ import manager.contexts.StudentContext;
 import manager.contexts.TeacherContext;
 import manager.dao.StudentDAO;
 import manager.dao.TeacherDAO;
-import manager.enums.Speciality;
 import manager.model.Student;
 import manager.model.Teacher;
 
@@ -28,9 +27,6 @@ import manager.model.Teacher;
 public class UserManager {
 
 	private static final Response RESPONSE_OK = Response.ok().build();
-
-	private static Student[] students = { new Student(61843L, "aaa", "aaa@abv.bg", "Encho", Speciality.SI),
-			new Student(61863L, "bbb", "bbbb@abv.bg", "Kotyo", Speciality.KN) };
 
 	@Inject
 	private StudentDAO studentDAO;

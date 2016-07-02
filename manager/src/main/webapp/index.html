@@ -39,6 +39,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Homework Manager</a>
             </div>
@@ -46,12 +47,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                <li>   <a href="admin.html">Admin</a></li>
                     <li>
                         <a class="page-scroll" href="#about">Login</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
                     </li>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -95,6 +98,7 @@
                     </form>
                     <!--a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Login</a-->
                     <button type="submit" onclick="javascript:login()" class="btn btn-default btn-xl my-button">Login</button>
+                    <div id="not_successfully_log_in"></div>
                 </div>
             </div>
         </div>

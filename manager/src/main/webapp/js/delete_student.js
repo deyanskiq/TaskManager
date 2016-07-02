@@ -6,10 +6,21 @@ function delete_student() {
         return;
     }
 
-    var data = {
-        faculty_number : faculty_number
+    $.ajax({
+        url : 'rest/students/deletebyfn',
+        type : "POST",
+        data : faculty_number,
+        contentType: "text/plain",
+        statusCode: {
+		        406: function() {
+		        	alert("Fail to delete student");
+		        	$( "#reset_delete_student" ).trigger( "click" );
+		          },
+		        200: function() {
+		        	alert("Successfully deleted student");
+		        	$( "#reset_delete_student" ).trigger( "click" );
+		        }
+	        }
+    });
     }
-
-    console.log(data);
-
-}
+    

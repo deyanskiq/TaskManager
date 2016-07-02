@@ -1,3 +1,4 @@
+"use strict";
 function add_teacher() {
     var username = $("#teacher_username")[0].value;
     var password = $("#teacher_password")[0].value;
@@ -13,10 +14,9 @@ function add_teacher() {
         username : username,
         password : password,
         name : name,
-        email : email,
         title : title
     }
-
+    console.log(data);
     $.ajax({
         url : 'rest/teachers/addteacher',
         type : "POST",

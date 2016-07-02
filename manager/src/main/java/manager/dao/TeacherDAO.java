@@ -15,7 +15,7 @@ import manager.model.Teacher;
 public class TeacherDAO {
 
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 
 	public boolean addTeacher(Teacher teacher) {
 		teacher.setPassword(getHashedPassword(teacher.getPassword()));

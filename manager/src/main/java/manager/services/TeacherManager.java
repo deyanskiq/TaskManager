@@ -10,8 +10,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.json.JSONObject;
-
 import manager.dao.TeacherDAO;
 import manager.model.Teacher;
 
@@ -35,10 +33,9 @@ public class TeacherManager {
 	@GET
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getTeacherByUsername(String username) {
+	public Teacher getTeacherByUsername(String username) {
 		Teacher findTeacherByUserName = teacherDAO.findTeacherByUserName(username);
-		JSONObject foundStudent = new JSONObject(findTeacherByUserName);
-		return foundStudent.toString();
+		return findTeacherByUserName;
 	}
 
 	@Path("deleteByUsername")

@@ -13,18 +13,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.json.JSONObject;
-
 import manager.dao.StudentDAO;
-import manager.enums.Speciality;
 import manager.model.Student;
 
 @Stateless
 @Path("students")
 public class StudentManager {
-
-	private static Student[] students = { new Student(61843L, "aaa", "aaa@abv.bg", "Encho", Speciality.SI),
-			new Student(61863L, "bbb", "bbbb@abv.bg", "Kotyo", Speciality.KN) };
 
 	private static final Response RESPONSE_OK = Response.ok().build();
 
@@ -45,10 +39,6 @@ public class StudentManager {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Student> getStudents() {
 		List<Student> allStudents = studentDAO.getAllStudents();
-		// if (allStudents != null) {
-		// JSONArray jsonStudents = new JSONArray(allStudents);
-		// return jsonStudents.toString();
-		// }
 		return allStudents;
 	}
 
@@ -56,10 +46,9 @@ public class StudentManager {
 	@GET
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String findStudentByFn(String facNumber) {
+	public Student findStudentByFn(String facNumber) {
 		Student findStudentByFN = studentDAO.findStudentByFN(Long.parseLong(facNumber));
-		JSONObject foundStudent = new JSONObject(findStudentByFN);
-		return foundStudent.toString();
+		return findStudentByFN;
 	}
 
 	@Path("deletebyfn")

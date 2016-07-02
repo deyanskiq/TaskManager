@@ -13,7 +13,6 @@ function add_teacher() {
         username : username,
         password : password,
         name : name,
-        email : email,
         title : title
     }
 

@@ -93,8 +93,8 @@ public class StudentDAO {
 		return password;
 	}
 
-	public int deleteStudentByFn(long facultyNumber) {
-		Query query = em.createQuery("DELETE FROM Student s WHERE s.facultyNumber=:facultyNumber")
+	public int deleteStudentByFn(Long facultyNumber) {
+		Query query = em.createQuery("DELETE FROM Student s WHERE s.facultyNumber = :facultyNumber")
 				.setParameter("facultyNumber", facultyNumber);
 		return query.executeUpdate();
 	}

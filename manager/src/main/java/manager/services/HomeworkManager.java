@@ -1,5 +1,6 @@
 package manager.services;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -12,6 +13,7 @@ import manager.dao.HomeworkDAO;
 import manager.model.Homework;
 import manager.utills.HomeworkData;
 
+@Stateless
 @Path("homeworks")
 public class HomeworkManager {
 

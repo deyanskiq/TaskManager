@@ -1,6 +1,7 @@
 package manager.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -46,6 +47,9 @@ public class Homework implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date deadline;
+
+	@Lob
+	private Blob solution;
 
 	public Homework() {
 
@@ -102,6 +106,14 @@ public class Homework implements Serializable {
 
 	public void setDeadline(Date deadline) {
 		this.deadline = deadline;
+	}
+
+	public Blob getSolution() {
+		return solution;
+	}
+
+	public void setSolution(Blob solution) {
+		this.solution = solution;
 	}
 
 	@Override

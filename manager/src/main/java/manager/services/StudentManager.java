@@ -43,7 +43,7 @@ public class StudentManager {
 	}
 
 	@Path("findbyfn")
-	@GET
+	@POST
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Student findStudentByFn(String facNumber) {
@@ -52,10 +52,11 @@ public class StudentManager {
 	}
 
 	@Path("deletebyfn")
-	@GET
+	@POST
 	@Consumes(MediaType.TEXT_PLAIN)
 	public Response deleteStudentByFn(String facNumber) {
-		int deleteStudentByFn = studentDAO.deleteStudentByFn(Long.parseLong(facNumber));
+		int deleteStudentByFn = studentDAO.deleteStudentByFn(Long.parseLong(facNumber, 10));
+		System.out.println(deleteStudentByFn);
 		return deleteStudentByFn > 0 ? RESPONSE_OK : Response.status(Status.NOT_MODIFIED).build();
 	}
 

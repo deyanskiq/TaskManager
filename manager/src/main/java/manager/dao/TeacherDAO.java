@@ -15,7 +15,7 @@ import manager.model.Teacher;
 public class TeacherDAO {
 
 	@PersistenceContext
-	EntityManager em;
+	private EntityManager em;
 
 	public boolean addTeacher(Teacher teacher) {
 		teacher.setPassword(getHashedPassword(teacher.getPassword()));
@@ -76,10 +76,11 @@ public class TeacherDAO {
 	}
 
 	public int deleteTeacherByUsername(String username) {
+
 		Query query = em.createQuery("DELETE FROM Teacher t WHERE t.username=:username").setParameter("username",
 				username);
-		return query.executeUpdate();
-
+		int result = query.executeUpdate();
+		return result;
 	}
 
 }

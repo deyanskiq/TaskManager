@@ -43,7 +43,7 @@ public class CoursesManager {
 	}
 
 	@Path("gethwsforcourse")
-	@GET
+	@POST
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Homework> getHomeworksForACourse(String courseName) {
@@ -52,7 +52,7 @@ public class CoursesManager {
 	}
 
 	@Path("findbyname")
-	@GET
+	@POST
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Course findCourseByName(String courseName) {

@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response.Status;
 
 import manager.dao.CourseDAO;
 import manager.model.Course;
+import manager.model.Homework;
 
 @Stateless
 @Path("courses")
@@ -22,30 +23,40 @@ public class CoursesManager {
 
 	private static final Response RESPONSE_OK = Response.ok().build();
 
-	private static Course[] courses = { new Course("Operation Systems", 6, "VELIN"),
-			new Course("Databases", 3, "Randoma"), new Course("Computer Networks", 5, "Dancho") };
-
 	@Inject
 	private CourseDAO courseDAO;
 
-	@POST
 	@Path("addcourse")
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addCourse(Course course) {
 		boolean addedCourse = courseDAO.addCourse(course);
 		return addedCourse == true ? RESPONSE_OK : Response.status(Status.CONFLICT).build();
 	}
 
-	@GET
 	@Path("getall")
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Course> getAllCourses() {
-		for (Course course : courses) {
-			this.addCourse(course);
-		}
-
 		List<Course> courses = courseDAO.getCourses();
-		return courses != null ? courses : null;
+		return courses;
 	}
 
+	@Path("gethwsforcourse")
+	@GET
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Homework> getHomeworksForACourse(String courseName) {
+		List<Homework> allHomeworksForCourse = courseDAO.getAllHomeworksForCourse(courseName);
+		return allHomeworksForCourse;
+	}
+
+	@Path("findbyname")
+	@GET
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Course findCourseByName(String courseName) {
+		Course findCourseByName = courseDAO.findCourseByName(courseName);
+		return findCourseByName;
+	}
 }

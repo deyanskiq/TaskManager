@@ -23,7 +23,7 @@ function login() {
 				$("#reset_login").trigger("click");				
 			}
 			else if(role == "Student"){
-				window.location.replace("student.html");				
+				window.location.replace("studenthome.html");				
 			}
 			else if(role == "Teacher"){
 				window.location.replace("teacherhome.html")

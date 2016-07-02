@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import manager.model.Course;
@@ -90,6 +91,12 @@ public class StudentDAO {
 			e.printStackTrace();
 		}
 		return password;
+	}
+
+	public int deleteStudentByFn(long facultyNumber) {
+		Query query = em.createQuery("DELETE FROM Student s WHERE s.facultyNumber=:facultyNumber")
+				.setParameter("facultyNumber", facultyNumber);
+		return query.executeUpdate();
 	}
 
 }

@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import manager.model.Teacher;
@@ -29,6 +30,16 @@ public class TeacherDAO {
 	public Teacher findTeacherByNameAndPass(String name, String password) {
 		TypedQuery<Teacher> query = em.createNamedQuery("findTeacherByNameAndPass", Teacher.class)
 				.setParameter("name", name).setParameter("password", password);
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	public Teacher findTeacherByUserName(String username) {
+		TypedQuery<Teacher> query = em.createNamedQuery("findTeacherByUserName", Teacher.class).setParameter("username",
+				username);
 		try {
 			return query.getSingleResult();
 		} catch (NoResultException e) {
@@ -62,6 +73,13 @@ public class TeacherDAO {
 			e.printStackTrace();
 		}
 		return password;
+	}
+
+	public int deleteTeacherByUsername(String username) {
+		Query query = em.createQuery("DELETE FROM Teacher t WHERE t.username=:username").setParameter("username",
+				username);
+		return query.executeUpdate();
+
 	}
 
 }

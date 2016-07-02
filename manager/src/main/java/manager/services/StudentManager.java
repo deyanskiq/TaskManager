@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import manager.dao.StudentDAO;
 import manager.enums.Speciality;
@@ -40,8 +41,8 @@ public class StudentManager {
 
 	}
 
-	@GET
 	@Path("getall")
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getStudents() {
 		List<Student> allStudents = studentDAO.getAllStudents();
@@ -50,6 +51,24 @@ public class StudentManager {
 			return jsonStudents.toString();
 		}
 		return null;
+	}
+
+	@Path("findbyfn")
+	@GET
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String findStudentByFn(String facNumber) {
+		Student findStudentByFN = studentDAO.findStudentByFN(Long.parseLong(facNumber));
+		JSONObject foundStudent = new JSONObject(findStudentByFN);
+		return foundStudent.toString();
+	}
+
+	@Path("deletebyfn")
+	@GET
+	@Consumes(MediaType.TEXT_PLAIN)
+	public Response deleteStudentByFn(String facNumber) {
+		int deleteStudentByFn = studentDAO.deleteStudentByFn(Long.parseLong(facNumber));
+		return deleteStudentByFn > 0 ? RESPONSE_OK : Response.status(Status.NOT_MODIFIED).build();
 	}
 
 }

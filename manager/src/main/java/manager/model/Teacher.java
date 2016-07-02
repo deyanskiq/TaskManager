@@ -19,7 +19,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Table(name = "TEACHERS")
 @NamedQueries({
-		@NamedQuery(name = "findTeacherByNameAndPass", query = "SELECT t FROM Teacher t WHERE t.name=:name AND t.password=:password") })
+		@NamedQuery(name = "findTeacherByNameAndPass", query = "SELECT t FROM Teacher t WHERE t.name=:name AND t.password=:password"),
+		@NamedQuery(name = "findTeacherByUserName", query = "SELECT t FROM Teacher t WHERE t.username=:username") })
 public class Teacher implements Serializable {
 
 	private static final long serialVersionUID = -7050747523330801102L;

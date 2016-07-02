@@ -1,70 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	
-	
-	 <meta charset="utf-8">
-    <title>Task Manager Teacher</title>
 
-    <link rel="shortcut icon" href="http://www.hk8.edu.hk/sites/default/files/hucom_0.ico">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Teacher's panel</title>
+
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
+    <!-- Custom CSS -->
+    <link href="css/sidebar.css" rel="stylesheet">
+    
+ <!-- Custom Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
-
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/creative.css" type="text/css">
-
+    
 </head>
-<body id="page-top">
-	   <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="myNav">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="homeworkManager">
-                <a class="navbar-brand page-scroll" href="#page-top">Homework Manager</a>
-            </div>
-            </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-        </div>
-        <!-- /.container-fluid -->
-        </div>
-    </nav>
+<body>
 
-<br>
-    <br>
-    <br>
-        <div class="col-md-2">
-            <ul class="nav nav-pills nav-stacked well">
-              <li><a href="#" id="home" ><i class="fa fa-home"></i> Home</a></li>
-               <li><a href="#" id ="courses">Courses</a></li>
-                 <li><a href="#" id="add_course">Add Course</a></li>
-                 <li><a href="#" id="delete_course">Delete Course</a></li>
-                 <li><a href="#" id="add_homework" >Add Homework</a></li>
-                 <li><a href="#" id="delete_homework" >Delete Homework</a></li>
-             
-              <li><a href="index.html"><i class="fa fa-sign-out"></i> Logout</a></li>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Teacher's panel
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="javascript:show_add_course_form()">Add course</a>
+                </li>
+                <li>
+                    <a href="#" onclick="javascript:show_add_task_form()">Add task</a>
+                </li>
+                <li>
+                    <a href="#" onclick="javascript:show_delete_course_form()">Delete course</a>
+                </li>
+                <li>
+                    <a href="#" onclick="javascript:show_add_task_form()">Delete task</a>
+                </li>
+                <li>
+                    <a href="#" onclick="javascript:show_all_homeworks()">Homeworks</a>
+                </li>
+                 <li>
+                    <a href="#" onclick="javascript:show_all_tasks()">Tasks</a>
+                </li>
+                <li>
+                    <a href="#" onclick="javascript:get_all_courses()">Courses</a>
+                </li>
+
+                <li>
+                    <a href="index.html">Logout</a>
+                </li>
+                <li>
+
             </ul>
         </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+         <div id="all"> 
+        <section id="add_course">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Add new course</h2>
+                    <form class="form-horizontal">
+                      <div class="form-group">
+                        <label for="course_name" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" id="course_name" placeholder="Name of the course">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="course_credits" class="col-sm-2 control-label">Credits</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" id="course_credits" placeholder="Credits of the course">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="course_description" class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" id="course_description" placeholder="Description of the course">
+                        </div>
+                      </div>
+                    <button type="button" onclick="javascript:add_course()" class="btn btn-xl my-button">Add course</button>
+                    <button type="reset" id="reset_add_course" class="btn btn-xl my-button">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="add_task">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Add new task</h2>
+                    <form class="form-horizontal">
+                      <div class="form-group">
+                        <label for="course_name" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" id="course_name" placeholder="Name of the course">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="course_credits" class="col-sm-2 control-label">Credits</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" id="course_credits" placeholder="Credits of the course">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="course_description" class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" id="course_description" placeholder="Description of the course">
+                        </div>
+                      </div>
+                    <button type="button" onclick="javascript:add_task()" class="btn btn-xl my-button">Add task</button>
+                    <button type="reset" id="reset_add_course" class="btn btn-xl my-button">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+     <section id="delete_course">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Delete a course</h2>
+                    <form class="form-horizontal">
+                      <div class="form-group">
+                        <label for="deleted_course_name" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" id="deleted_course_name" placeholder="Name of course">
+                        </div>
+                      </div>
+                    <button type="button" onclick="javascript:delete_course()" class="btn btn-xl my-button">Delete course</button>
+                    <button type="reset" id="reset_delete_course" class="btn btn-xl my-button">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="courses"></div>
+    <div></div>
+    </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
 </body>
+
 
 	<!-- handlebars  -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>	
@@ -84,16 +190,13 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/creative.js"></script>
-	<script src="js/add_course.js"></script>
-	<script src="js/delete_course.js"></script>
-	<script src="js/add_homework.js"></script>
-	<script src="js/delete_homework.js"></script>
-	<script src="js/add_course.js"></script>
-	
+	<script src="js/course.js"></script>
+	<script src="js/homework.js"></script>
+	<script src="js/task.js"></script>
 	
 	<script type="text/javascript" src="js/studenthome.js"></script>
-</body>
 
 
 
 </html>
+

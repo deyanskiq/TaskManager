@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import manager.model.Course;
@@ -24,6 +25,12 @@ public class CourseDAO {
 			return true;
 		}
 		return false;
+	}
+
+	public int deleteCourse(String name) {
+		Query query = em.createQuery("DELETE FROM Course c WHERE c.name=:name").setParameter("name", name);
+		return query.executeUpdate();
+
 	}
 
 	public Course findCourseByName(String name) {

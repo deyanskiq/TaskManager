@@ -34,6 +34,14 @@ public class CoursesManager {
 		return addedCourse == true ? RESPONSE_OK : Response.status(Status.CONFLICT).build();
 	}
 
+	@Path("deletebyname")
+	@POST
+	@Consumes(MediaType.TEXT_PLAIN)
+	public Response deleteCourseByName(String name) {
+		int deleteCourseByName = courseDAO.deleteCourse(name);
+		return deleteCourseByName > 0 ? RESPONSE_OK : Response.status(Status.NOT_MODIFIED).build();
+	}
+
 	@Path("getall")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

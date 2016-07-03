@@ -29,7 +29,7 @@ function add_course() {
         data : JSON.stringify(data),
         contentType: "application/json",
         statusCode: {
-		        406: function() {
+		        304: function() {
 		        	alert("Fail to add course");
 		        	$( "#reset_add_course" ).trigger( "click" );
 		          },
@@ -46,7 +46,7 @@ function get_all_courses(){
 	
 	$("#courses p").remove();
 	$('#all > :not(#courses)').hide();
-	$("#courses ").show();
+	$("#courses").show();
 		$.ajax({
 			url : 'rest/courses/getall',
 			type : "GET",
@@ -55,7 +55,7 @@ function get_all_courses(){
 				console.log("S " + courses);
 				for ( var i in courses) {			
 					console.log(courses[i].name);
-					$("#courses").append("<p>" + courses[i].name + "-" + courses[i].name + "</p>");
+					$("#courses").append("<p>" + courses[i].name +"</p>");
 				}
 			}
 		});
@@ -66,9 +66,9 @@ function get_all_courses_by_teacher(){
 	
 	$("#courses p").remove();
 	$('#all > :not(#courses)').hide();
-	$("#courses ").show();
+	$("#courses").show();
 		$.ajax({
-			url : 'rest/courses/getCoursesByTeacher',
+			url : 'rest/courses/getCoursesByCurrentTeacher',
 			type : "GET",
 			contentType: "application/json",
 			success: function(courses) {

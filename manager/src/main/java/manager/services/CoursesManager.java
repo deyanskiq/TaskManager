@@ -81,11 +81,14 @@ public class CoursesManager {
 		return findCourseByName;
 	}
 
-	@Path("getCoursesByTeacher")
+	@Path("getCoursesByCurrentTeacher")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Course> getCoursesByTeacher(Teacher teacher) {
-		List<Course> courses = courseDAO.getCoursesByTeacher(teacher);
+	public List<Course> getCoursesByCurrentTeacher() {
+		Teacher currentTeacher = teacherContext.getCurrentTeacher();
+		System.out.println(currentTeacher);
+		List<Course> courses = courseDAO.getCoursesByTeacher(currentTeacher);
+		System.out.println(courses);
 		return courses;
 	}
 }

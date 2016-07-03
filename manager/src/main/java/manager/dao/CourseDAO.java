@@ -3,12 +3,14 @@ package manager.dao;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import manager.contexts.TeacherContext;
 import manager.model.Course;
 import manager.model.Homework;
 import manager.model.Teacher;
@@ -19,9 +21,14 @@ public class CourseDAO {
 	@PersistenceContext
 	private EntityManager em;
 
+	@Inject
+	private TeacherContext teacherContext;
+
 	public boolean addCourse(Course course) {
+
 		Course foundCourse = findCourseByName(course.getName());
 		if (foundCourse == null) {
+			course.setTeacher(teacherContext.getCurrentTeacher());
 			em.persist(course);
 			return true;
 		}

@@ -48,11 +48,14 @@ public class HomeworkManager {
 
 	@Path("deleteByName")
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.TEXT_PLAIN)
 	public Response deleteHomeworkByName(String name) {
+		System.out.println(teacherContext.getCurrentTeacher());
 		List<Course> currentTeacherCourses = teacherContext.getCurrentTeacher().getCourses();
+		System.out.println(currentTeacherCourses);
 		for (Course course : currentTeacherCourses) {
 			List<Homework> homeworks = course.getHomeworks();
+			System.out.println(homeworks);
 			for (Homework homework : homeworks) {
 				if (homework.getName().equals(name)) {
 					int deleteHomeworkByName = homeworkDAO.deleteHomework(name);

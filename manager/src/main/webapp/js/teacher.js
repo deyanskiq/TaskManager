@@ -1,4 +1,29 @@
 "use strict";
+
+$( document ).ready(function() {
+    get_all_courses_by_teacher();
+});
+
+function get_all_courses_by_teacher(){
+	
+	$("#courses p").remove();
+	$('#all > :not(#courses)').hide();
+	$("#courses").show();
+		$.ajax({
+			url : 'rest/courses/getCoursesByCurrentTeacher',
+			type : "GET",
+			contentType: "application/json",
+			success: function(courses) {
+				console.log("S " + courses);
+				for ( var i in courses) {			
+					console.log(courses[i].name);
+					$("#courses").append("<p>" + courses[i].name + "</p>");
+				}
+			}
+		});
+	
+	}
+
 function add_teacher() {
     var username = $("#teacher_username")[0].value;
     var password = $("#teacher_password")[0].value;

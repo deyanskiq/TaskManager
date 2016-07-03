@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,13 +41,13 @@ public class Homework implements Serializable {
 	@Lob
 	private String description;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private Course course;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date deadline;
 
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "homework")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "homework", fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<Task> tasks = new ArrayList<>();
 
@@ -55,7 +56,7 @@ public class Homework implements Serializable {
 	}
 
 	public Homework(Course course, String name, String description, Date deadline) {
-		this.course = course;
+		this.setCourse(course);
 		this.name = name;
 		this.description = description;
 		this.deadline = deadline;

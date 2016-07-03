@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +41,7 @@ public class Teacher implements Serializable {
 	private String title;
 
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "teacher")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "teacher", fetch = FetchType.EAGER)
 	private List<Course> courses = new ArrayList<>();
 
 	public Teacher(String username, String password, String name, String title) {

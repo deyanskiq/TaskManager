@@ -80,14 +80,14 @@ function delete_homework(){
 	        url : 'rest/homeworks/deleteByName',
 	        type : "POST",
 	        data : deleted_homework_name,
-	        contentType:  "application/json",
+	        contentType:  "text/plain",
 	        statusCode: {
 			        304: function() {
-			        	alert("Fail to delete course");
+			        	alert("Fail to delete homework");
 			        	$( "#reset_delete_homework" ).trigger( "click" );
 			          },
 			        200: function() {
-			        	alert("Successfully deleted course");
+			        	alert("Successfully deleted homework");
 			        	$( "#reset_delete_homework" ).trigger( "click" );
 			        }
 		        }
@@ -100,7 +100,7 @@ function show_add_homework_form(){
 	$("#add_homework").show();
 	
 		    $.ajax({
-	    	url : 'rest/courses/getall',
+	    	url : 'rest/courses/getCoursesByCurrentTeacher',
 	    	type : "GET",
 	    	contentType: "application/json",
 	    	success: function(courses) {

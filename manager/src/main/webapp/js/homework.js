@@ -1,23 +1,31 @@
 "use strict";
 var all_courses;
 function show_all_homeworks(){
-	
+	$("#homeworks p").remove();
+	$('#all > :not(#homeworks)').hide();
+	$("#homeworks ").show();
+		$.ajax({
+			url : 'rest/homeworks/getall',
+			type : "GET",
+			contentType: "application/json",
+			success: function(homeworks) {
+				console.log("S " + homeworks);
+				for ( var i in homeworks) {			
+					console.log(homeworks[i].name);
+					$("#homeworks").append("<p>" + homeworks[i].name + "</p>");
+				}
+			}
+		});
 }
 
 
-function homeworks_getall(){
-	
-}
+
 function add_homework(){
 
 	var course_name= $("#add_homework_with_course_name")[0].value;
 	var homework_name= $("#homework_name")[0].value;
 	var description= $("#homework_description")[0].value;
 	var deadline= $("#deadline")[0].value;
-		console.log(course_name);
-		console.log(homework_name);
-		console.log(description);
-		console.log(deadline);
 
 if (course_name == "" || homework_name == "" || description == "" || deadline == "") {
 	alert("All fields should be filled");
@@ -40,9 +48,6 @@ var data = {
 		deadline: new Date(deadline)
 	}
 
-console.log(course_object);
-console.log(data);
-
 $.ajax({
 	
     url : 'rest/homeworks/addhomework',
@@ -55,7 +60,7 @@ $.ajax({
 	        	$( "#reset_add_homework" ).trigger( "click" );
 	          },
 	        200: function() {
-	        	alert("Successfully added course");
+	        	alert("Successfully added homework");
 	        	$( "#reset_add_homework" ).trigger( "click" );
 	        }
         }
@@ -63,6 +68,30 @@ $.ajax({
 
 }
 function delete_homework(){
+	
+	var deleted_homework_name= $("#deleted_homework_name")[0].value;
+	
+	if( deleted_homework_name=="" ){
+		alert("Homework name should be filled");
+		return;
+	}
+	
+	 $.ajax({
+	        url : 'rest/homeworks/deleteByName',
+	        type : "POST",
+	        data : deleted_homework_name,
+	        contentType:  "application/json",
+	        statusCode: {
+			        304: function() {
+			        	alert("Fail to delete course");
+			        	$( "#reset_delete_homework" ).trigger( "click" );
+			          },
+			        200: function() {
+			        	alert("Successfully deleted course");
+			        	$( "#reset_delete_homework" ).trigger( "click" );
+			        }
+		        }
+	    });
 	
 }
 function show_add_homework_form(){
@@ -95,5 +124,6 @@ function show_add_homework_form(){
 	 
 }
 function show_delete_homework_form(){
-	
+	$('#all > :not(#delete_homework)').hide();
+	$("#delete_homework").show();
 }

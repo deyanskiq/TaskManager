@@ -77,7 +77,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="javascript:get_all_courses()">Courses</a>
+                    <a href="#" onclick="javascript:get_all_courses_by_teacher()">Courses</a>
                 </li>
                 <li>
                     <a href="#" onclick="javascript:show_add_course_form()">Add course</a>
@@ -142,6 +142,8 @@
             </div>
         </div>
     </section>
+    
+    
     
     <section id="add_homework">
         <div class="container">
@@ -212,8 +214,30 @@
         </div>
     </section>
     
+     <section id="delete_homework">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Delete homework</h2>
+                    <form class="form-horizontal">
+                 
+                      <div class="form-group">
+                        <label for="deleted_homework_name" class="col-sm-2 control-label">Homework Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" id="deleted_homework_name" placeholder="Name of homework">
+                        </div>
+                      </div>
+                    <button type="button" onclick="javascript:delete_homework()" class="btn btn-xl my-button">Delete homework</button>
+                    <button type="reset" id="reset_delete_homework" class="btn btn-xl my-button">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="homeworks"></div>
+    
     <div id="courses"></div>
-    <div></div>
     </div>
         </div>
         <!-- /#page-content-wrapper -->

@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import manager.model.Course;
 import manager.model.Homework;
+import manager.model.Teacher;
 
 @RequestScoped
 public class CourseDAO {
@@ -57,5 +58,11 @@ public class CourseDAO {
 		} catch (NoResultException e) {
 			return null;
 		}
+	}
+
+	public List<Course> getCoursesByTeacher(Teacher teacher) {
+		Query query = em.createQuery("SELECT c FROM Course c WHERE c.teacher = :teacher").setParameter("teacher",
+				teacher);
+		return query.getResultList();
 	}
 }

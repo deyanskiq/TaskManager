@@ -25,7 +25,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @XmlRootElement
 @Table(name = "HOMEWORKS")
-@NamedQueries({ @NamedQuery(name = "findHomeworkById", query = "SELECT h FROM Homework h WHERE h.id=:id") })
+@NamedQueries({ @NamedQuery(name = "findHomeworkById", query = "SELECT h FROM Homework h WHERE h.id=:id"),
+		@NamedQuery(name = "getAllHomeworks", query = "SELECT h FROM Homework h") })
 public class Homework implements Serializable {
 
 	private static final long serialVersionUID = 2630716586806811332L;

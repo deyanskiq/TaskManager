@@ -62,6 +62,26 @@ function get_all_courses(){
 	
 	}
 
+function get_all_courses_by_teacher(){
+	
+	$("#courses p").remove();
+	$('#all > :not(#courses)').hide();
+	$("#courses ").show();
+		$.ajax({
+			url : 'rest/courses/getCoursesByTeacher',
+			type : "GET",
+			contentType: "application/json",
+			success: function(courses) {
+				console.log("S " + courses);
+				for ( var i in courses) {			
+					console.log(courses[i].name);
+					$("#courses").append("<p>" + courses[i].name + "</p>");
+				}
+			}
+		});
+	
+	}
+
 function delete_course(){
 	
 	var deleted_course_name = $("#deleted_course_name")[0].value;

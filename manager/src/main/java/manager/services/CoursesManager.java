@@ -17,6 +17,7 @@ import manager.contexts.TeacherContext;
 import manager.dao.CourseDAO;
 import manager.model.Course;
 import manager.model.Homework;
+import manager.model.Teacher;
 
 @Stateless
 @Path("courses")
@@ -78,5 +79,13 @@ public class CoursesManager {
 	public Course findCourseByName(String courseName) {
 		Course findCourseByName = courseDAO.findCourseByName(courseName);
 		return findCourseByName;
+	}
+
+	@Path("getCoursesByTeacher")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Course> getCoursesByTeacher(Teacher teacher) {
+		List<Course> courses = courseDAO.getCoursesByTeacher(teacher);
+		return courses;
 	}
 }

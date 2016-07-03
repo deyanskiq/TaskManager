@@ -1,4 +1,3 @@
-
 function add_student() {
 	var name = $("#student_name")[0].value;
     var password = $("#student_password")[0].value;

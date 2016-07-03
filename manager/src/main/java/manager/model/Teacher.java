@@ -142,4 +142,12 @@ public class Teacher implements Serializable {
 		return "Teacher [username=" + username + ", password=" + password + ", name=" + name + ", title=" + title + "]";
 	}
 
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
 }

@@ -11,8 +11,8 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import manager.model.Course;
-import manager.model.Homework;
 import manager.model.Student;
+import manager.model.Task;
 
 @RequestScoped
 public class StudentDAO {
@@ -48,10 +48,10 @@ public class StudentDAO {
 		return null;
 	}
 
-	public List<Homework> getAllHomeworksByFN(Long facultyNumber) {
+	public List<Task> getAllTasksByFN(Long facultyNumber) {
 		Student s = findStudentByFN(facultyNumber);
 		if (s != null) {
-			return s.getHomeworks();
+			return s.getTasks();
 		}
 		return null;
 	}

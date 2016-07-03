@@ -43,6 +43,10 @@ function add_course() {
 
 
 function get_all_courses(){
+	
+	$("#courses p").remove();
+	$('#all > :not(#courses)').hide();
+	$("#courses ").show();
 		$.ajax({
 			url : 'rest/courses/getall',
 			type : "GET",

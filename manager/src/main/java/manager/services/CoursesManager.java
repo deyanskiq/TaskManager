@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import manager.contexts.TeacherContext;
 import manager.dao.CourseDAO;
 import manager.model.Course;
 import manager.model.Homework;
@@ -26,6 +27,9 @@ public class CoursesManager {
 	@Inject
 	private CourseDAO courseDAO;
 
+	@Inject
+	private TeacherContext teacherContext;
+
 	@Path("addcourse")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -38,8 +42,16 @@ public class CoursesManager {
 	@POST
 	@Consumes(MediaType.TEXT_PLAIN)
 	public Response deleteCourseByName(String name) {
-		int deleteCourseByName = courseDAO.deleteCourse(name);
-		return deleteCourseByName > 0 ? RESPONSE_OK : Response.status(Status.NOT_MODIFIED).build();
+		List<Course> currentTeacherCourses = teacherContext.getCurrentTeacher().getCourses();
+		for (Course course : currentTeacherCourses) {
+			if (course.getName().equals(name)) {
+				int deleteCourseByName = courseDAO.deleteCourse(name);
+				return deleteCourseByName > 0 ? RESPONSE_OK : Response.status(Status.NOT_MODIFIED).build();
+			}
+		}
+
+		return Response.status(Status.NOT_MODIFIED).build();
+
 	}
 
 	@Path("getall")

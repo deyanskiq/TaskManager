@@ -46,11 +46,13 @@ public class UserManager {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String loginUser(String data) throws SQLException {
 		JSONObject loginData = new JSONObject(data);
+		System.out.println(loginData);
 
 		Student student = studentDAO.validateStudentCredentials(loginData.getString("name"),
 				loginData.getString("password"));
 		Teacher teacher = teacherDAO.validateTeacherCredentials(loginData.getString("name"),
 				loginData.getString("password"));
+		System.out.println(teacher);
 
 		if (student != null) {
 			studentContext.setCurrentStudent(student);
@@ -96,5 +98,19 @@ public class UserManager {
 	public void logoutUser() {
 		studentContext.setCurrentStudent(null);
 		teacherContext.setCurrentTeacher(null);
+	}
+
+	@Path("role")
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getRole() {
+		if (studentContext.getCurrentStudent() != null) {
+			return "Student";
+		}
+
+		if (teacherContext.getCurrentTeacher() != null) {
+			return "Teacher";
+		}
+		return "No user";
 	}
 }

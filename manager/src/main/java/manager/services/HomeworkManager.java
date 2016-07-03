@@ -21,8 +21,6 @@ import javax.ws.rs.core.Response.Status;
 
 import manager.dao.HomeworkDAO;
 import manager.model.Homework;
-import manager.model.Student;
-import manager.utills.HomeworkData;
 
 @Stateless
 @Path("homeworks")
@@ -39,48 +37,6 @@ public class HomeworkManager {
 	public Response addHomework(Homework homework) {
 		boolean addHomework = homeworkDAO.addHomework(homework);
 		return addHomework == true ? RESPONSE_OK : Response.status(Status.NOT_ACCEPTABLE).build();
-	}
-
-	@Path("assess")
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void assessHomework(HomeworkData homeworkData) {
-		homeworkDAO.assessHomework(homeworkData.getHomework(), homeworkData.getMark());
-		Student student = homeworkData.getHomework().getStudent();
-		String email = student.getEmail();
-
-		final String username = "your_user_name@gmail.com";
-		final String password = "yourpassword";
-
-		Properties props = new Properties();
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
-
-		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-			@Override
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(username, password);
-			}
-		});
-
-		try {
-
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("vladislavatanasov95@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-			message.setSubject("Your Homework was assessed");
-			message.setText("Dear" + student.getName() + ",\n\n Your mark for homework "
-					+ homeworkData.getHomework().getDescription() + " is " + homeworkData.getMark() + "!");
-
-			Transport.send(message);
-
-			System.out.println("Done");
-
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	@Path("sendmail")

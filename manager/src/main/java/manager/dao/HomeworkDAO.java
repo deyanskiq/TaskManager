@@ -32,9 +32,4 @@ public class HomeworkDAO {
 		}
 	}
 
-	public void assessHomework(Homework homework, Double mark) {
-		homework.setMark(mark);
-		em.persist(homework);
-	}
-
 }

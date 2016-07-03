@@ -1,7 +1,9 @@
 package manager.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,6 +14,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,27 +34,28 @@ public class Homework implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	private String name;
+
 	@Lob
 	private String description;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JsonIgnore
 	private Course course;
-
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JsonIgnore
-	private Student student;
-
-	private Double mark;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date deadline;
+
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "homework")
+	@JsonIgnore
+	private List<Task> tasks = new ArrayList<>();
 
 	public Homework() {
 
 	}
 
-	public Homework(String description, Date deadline) {
+	public Homework(Course course, String name, String description, Date deadline) {
+		this.course = course;
+		this.name = name;
 		this.description = description;
 		this.deadline = deadline;
 	}
@@ -66,14 +70,6 @@ public class Homework implements Serializable {
 
 	public Course getCourse() {
 		return course;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public Double getMark() {
-		return mark;
 	}
 
 	public Date getDeadline() {
@@ -92,16 +88,16 @@ public class Homework implements Serializable {
 		this.course = course;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
-	public void setMark(Double mark) {
-		this.mark = mark;
-	}
-
 	public void setDeadline(Date deadline) {
 		this.deadline = deadline;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
@@ -110,7 +106,6 @@ public class Homework implements Serializable {
 		int result = 1;
 		result = prime * result + ((deadline == null) ? 0 : deadline.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((mark == null) ? 0 : mark.hashCode());
 		return result;
 	}
 
@@ -133,18 +128,12 @@ public class Homework implements Serializable {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (mark == null) {
-			if (other.mark != null)
-				return false;
-		} else if (!mark.equals(other.mark))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Homework [description=" + description + ", course=" + course + ", student=" + student + ", mark=" + mark
-				+ ", deadline=" + deadline + "]";
+		return "Homework [name=" + name + ", description=" + description + ", deadline=" + deadline + "]";
 	}
 
 }

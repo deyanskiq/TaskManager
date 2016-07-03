@@ -1,15 +1,19 @@
 package manager.utills;
 
 import manager.model.Homework;
+import manager.model.Student;
 
 public class HomeworkData {
 
 	private Homework homework;
 
+	private Student student;
+
 	private Double mark;
 
-	public HomeworkData(Homework homework, Double mark) {
+	public HomeworkData(Homework homework, Student student, Double mark) {
 		this.homework = homework;
+		this.student = student;
 		this.mark = mark;
 	}
 
@@ -31,6 +35,14 @@ public class HomeworkData {
 
 	public void setMark(Double mark) {
 		this.mark = mark;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 
 	@Override

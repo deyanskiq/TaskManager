@@ -21,6 +21,7 @@ function login() {
 		contentType: "application/json",
 		dataType: "text",
 		success: function(role) {
+			console.log(role);
 			if (role == "Not Found") {
 				$("#reset_login").trigger("click");	
 				$("#not_successfully_log_in").append("<p id=\"not_login\">Invalid username or password</p>");

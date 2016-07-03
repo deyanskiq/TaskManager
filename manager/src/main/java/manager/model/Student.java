@@ -49,7 +49,7 @@ public class Student implements Serializable {
 
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "student")
-	private List<Homework> homeworks = new ArrayList<>();
+	private List<Task> tasks = new ArrayList<>();
 
 	@JsonIgnore
 	@ManyToMany
@@ -123,12 +123,12 @@ public class Student implements Serializable {
 		this.speciality = speciality;
 	}
 
-	public List<Homework> getHomeworks() {
-		return homeworks;
+	public List<Task> getTasks() {
+		return tasks;
 	}
 
-	public void setHomeworks(List<Homework> homeworks) {
-		this.homeworks = homeworks;
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
 	}
 
 	@Override

@@ -14,6 +14,7 @@ public class TeacherContext implements Serializable {
 	private Teacher currentTeacher;
 
 	public Teacher getCurrentTeacher() {
+
 		return currentTeacher;
 	}
 

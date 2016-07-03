@@ -48,7 +48,7 @@ public class TeacherDAO {
 	}
 
 	public Teacher validateTeacherCredentials(String name, String password) {
-		String txtQuery = "SELECT t FROM Teacher t WHERE t.name=:name AND t.password=:password";
+		String txtQuery = "SELECT t FROM Teacher t WHERE t.username=:name AND t.password=:password";
 		TypedQuery<Teacher> query = em.createQuery(txtQuery, Teacher.class);
 		query.setParameter("name", name);
 		query.setParameter("password", getHashedPassword(password));

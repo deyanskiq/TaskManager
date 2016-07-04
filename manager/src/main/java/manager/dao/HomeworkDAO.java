@@ -19,6 +19,7 @@ public class HomeworkDAO {
 
 	public boolean addHomework(Homework homework) {
 		Homework foundHomework = findHomeworkById(homework.getId());
+
 		if (foundHomework == null) {
 			em.persist(homework);
 			return true;

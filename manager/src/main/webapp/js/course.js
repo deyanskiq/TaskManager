@@ -43,8 +43,6 @@ function add_course() {
 
 
 function get_all_courses(){
-	
-	$("#courses p").remove();
 	$('#all > :not(#courses)').hide();
 	$("#courses").show();
 		$.ajax({
@@ -52,15 +50,30 @@ function get_all_courses(){
 			type : "GET",
 			contentType: "application/json",
 			success: function(courses) {
-				console.log("S " + courses);
-				for ( var i in courses) {			
-					console.log(courses[i].name);
-					$("#courses").append("<p>" + courses[i].name +"</p>");
-				}
+				renderTableCourses(courses);
 			}
 		});
 	
 	}
+
+function renderTableCourses(data) {
+	$("#coursesTable tr").remove();
+	$("#coursesTable thead").remove();
+    $("#coursesTable").append("<thead><tr><th>Course name</th><th>Course description</th><th>Course credits</th></tr></thead>");
+    for (var i in data) {
+    	console.log(data[i]);
+        renderRowCourses(data[i]);
+    }
+}
+
+function renderRowCourses(rowData) {
+    var row = $("<tr />")
+    $("#coursesTable").append(row);
+
+    row.append($("<td>" + rowData.name + "</td>"));
+    row.append($("<td>" + rowData.description + "</td>"));
+    row.append($("<td>" + rowData.credits + "</td>"));
+}
 
 function get_all_courses_by_teacher(){
 	

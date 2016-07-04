@@ -14,11 +14,12 @@ function get_all_courses_by_teacher(){
 			type : "GET",
 			contentType: "application/json",
 			success: function(courses) {
-				console.log("S " + courses);
-				for ( var i in courses) {			
-					console.log(courses[i].name);
-					$("#courses").append("<p>" + courses[i].name + "</p>");
-				}
+				renderTable(courses);
+//				console.log("S " + courses);
+//				for ( var i in courses) {			
+//					console.log(courses[i].name);
+//					$("#courses").append("<p>" + courses[i].name + "</p>");
+//				}
 			}
 		});
 	
@@ -86,3 +87,21 @@ function delete_teacher() {
 	        }
     });
     }
+
+
+function renderTable(data) {
+    $("#courses tr").remove();
+    $("#courses thead").remove();
+    $("#courses").append("<thead><tr><th>Course name</th><th>Course credits</th><th>Course description</th></tr></thead>")
+    for (var i in data) {
+        renderRow(data[i]);
+    }
+}
+
+function renderRow(rowData) {
+    var row = $("<tr />")
+    $("#courses").append(row);
+    row.append($("<td>" + rowData.name + "</td>"));
+    row.append($("<td>" + rowData.credits + "</td>"));
+    row.append($("<td>" + rowData.description + "</td>"));
+}

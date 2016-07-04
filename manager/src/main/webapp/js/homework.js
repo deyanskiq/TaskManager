@@ -1,23 +1,44 @@
 "use strict";
 var all_courses;
 function show_all_homeworks(){
-	$("#homeworks p").remove();
 	$('#all > :not(#homeworks)').hide();
-	$("#homeworks ").show();
+	$("#homeworks").show();
 		$.ajax({
 			url : 'rest/homeworks/getall',
 			type : "GET",
 			contentType: "application/json",
 			success: function(homeworks) {
+				renderTableHomeworks(homeworks);
 				console.log("S " + homeworks);
-				for ( var i in homeworks) {			
-					console.log(homeworks[i].name);
-					$("#homeworks").append("<p>" + homeworks[i].name + "</p>");
-				}
+//				for ( var i in homeworks) {			
+//					console.log(homeworks[i].name);
+//					$("#homeworks").append("<p>" + homeworks[i].name + "</p>");
+//				}
 			}
 		});
 }
 
+function renderTableHomeworks(data) {
+	$("#homeworks tr").remove();
+	$("#homeworks thead").remove();
+    $("#homeworks").append("<thead><tr><th>Homework name</th><th>Homework description</th><th>Homework deadline</th></tr></thead>");
+    for (var i in data) {
+    	console.log(data[i]);
+        renderRowHomework(data[i]);
+    }
+}
+
+function renderRowHomework(rowData) {
+    var row = $("<tr />")
+    $("#homeworks").append(row);
+    console.log(rowData.name);
+    console.log(rowData.description);
+    console.log(rowData.deadline);
+
+    row.append($("<td>" + rowData.name + "</td>"));
+    row.append($("<td>" + rowData.description + "</td>"));
+    row.append($("<td>" + new Date(rowData.deadline).toString() + "</td>"));
+}
 
 
 function add_homework(){

@@ -30,7 +30,6 @@ public class CourseDAO {
 		if (foundCourse == null) {
 			course.setTeacher(teacherContext.getCurrentTeacher());
 			teacherContext.getCurrentTeacher().getCourses().add(course);
-			System.out.println(teacherContext.getCurrentTeacher().getCourses().toString());
 			em.persist(course);
 			return true;
 		}

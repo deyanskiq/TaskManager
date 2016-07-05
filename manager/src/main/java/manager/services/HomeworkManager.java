@@ -50,7 +50,6 @@ public class HomeworkManager {
 				course.getHomeworks().add(homework);
 			}
 		}
-		// System.out.println(homework.getCourse());
 		return addHomework == true ? RESPONSE_OK : Response.status(Status.NOT_ACCEPTABLE).build();
 	}
 
@@ -58,13 +57,10 @@ public class HomeworkManager {
 	@POST
 	@Consumes(MediaType.TEXT_PLAIN)
 	public Response deleteHomeworkByName(String name) {
-		// System.out.println(teacherContext.getCurrentTeacher());
 
 		List<Course> currentTeacherCourses = teacherContext.getCurrentTeacher().getCourses();
-		// System.out.println(currentTeacherCourses);
 		for (Course course : currentTeacherCourses) {
 			List<Homework> homeworks = course.getHomeworks();
-			// System.out.println(homeworks);
 			for (Homework homework : homeworks) {
 				if (homework.getName().equals(name)) {
 					course.getHomeworks().remove(homework);

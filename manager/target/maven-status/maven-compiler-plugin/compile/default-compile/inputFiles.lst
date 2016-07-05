@@ -1,13 +1,21 @@
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Student.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\services\StudentManager.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Homework.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Teacher.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\StudentDAO.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Specialty.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\SpecialtyDAO.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\SpecialityDAO.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\HomeworkDAO.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\TeacherDAO.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\model\Course.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\dao\CourseDAO.java
-D:\GitHubRepositories\TaskManager\manager\src\main\java\manager\rest\RestApp.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\services\UserManager.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\rest\RestApp.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\enums\Speciality.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\model\Homework.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\dao\CourseDAO.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\dao\TeacherDAO.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\contexts\TeacherContext.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\services\HomeworkManager.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\utills\HomeworkData.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\dao\StudentDAO.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\dao\TaskDAO.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\services\CoursesManager.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\model\Course.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\dao\HomeworkDAO.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\services\TaskManager.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\model\Task.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\services\TeacherManager.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\contexts\StudentContext.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\services\StudentManager.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\model\Student.java
+E:\My documents\Fmi\fmi\JavaEE\Workspace\ManagerRepo\TaskManager\manager\src\main\java\manager\model\Teacher.java
